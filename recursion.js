@@ -141,9 +141,9 @@ function binarySearchIndex(arr, val, left = 0, right = arr.length) {
   if (arr[mid] === val) {
     return mid;
   } else if (arr[mid] > val) {
-    return binarySearch(arr, val, left, right = mid - 1);
+    return binarySearchIndex(arr, val, left, right = mid - 1);
   } else {
-    return binarySearch(arr, val, left = mid + 1, right);
+    return binarySearchIndex(arr, val, left = mid + 1, right);
   }
 }
 
