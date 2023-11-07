@@ -115,7 +115,22 @@ function gatherStrings(obj) {
 /** binarySearch: given a sorted array of numbers, and a value,
  * return true if val is in array, false if not present). */
 
-function binarySearch(arr, val, left = 0, right = arr.length) {
+function binarySearch(arr, val) {
+  if (arr.length === 0) return false;
+
+  const mid = Math.floor((0 + arr.length) / 2);
+
+  if (arr[mid] === val) {
+    return true;
+  } else if (arr[mid] > val) {
+    return binarySearch(arr.slice(0, mid), val);
+  } else {
+    return binarySearch(arr.slice(mid + 1), val);
+  }
+}
+
+
+function binarySearch2(arr, val, left = 0, right = arr.length) {
   if (left > right) return false;
 
   const mid = Math.floor((left + right) / 2);
@@ -133,7 +148,27 @@ function binarySearch(arr, val, left = 0, right = arr.length) {
 /** binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
-function binarySearchIndex(arr, val, left = 0, right = arr.length) {
+function binarySearchIndex(arr, val) {
+
+  function _bsIndex(start, end) {
+    if (start > end) return -1;
+
+    const mid = Math.floor((start + end) / 2);
+
+    if (arr[mid] === val) {
+      return mid;
+    } else if (arr[mid] > val) {
+      return _bsIndex(start, mid - 1);
+    } else {
+      return _bsIndex(mid + 1, end);
+    }
+  }
+
+  return _bsIndex(0, arr.length);
+}
+
+
+function binarySearchIndex2(arr, val, left = 0, right = arr.length) {
   if (left > right) return -1;
 
   const mid = Math.floor((left + right) / 2);
